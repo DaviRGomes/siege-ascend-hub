@@ -1,13 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import LoadingScreen from "@/components/LoadingScreen";
+import HeroSection from "@/components/HeroSection";
+import ProblemSection from "@/components/ProblemSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import PricingSection from "@/components/PricingSection";
+import FooterSection from "@/components/FooterSection";
+import LeadCaptureDialog from "@/components/LeadCaptureDialog";
 
 const Index = () => {
+  const [loading, setLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <AnimatePresence>
+        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+
+      {!loading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="min-h-screen bg-background"
+        >
+          <HeroSection onCtaClick={() => setDialogOpen(true)} />
+          <ProblemSection />
+          <BenefitsSection />
+          <PricingSection onCtaClick={() => setDialogOpen(true)} />
+          <FooterSection />
+          <LeadCaptureDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+        </motion.div>
+      )}
+    </>
   );
 };
 
