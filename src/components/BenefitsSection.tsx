@@ -36,29 +36,10 @@ const benefits = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "KrypticFrag",
-    rank: "Silver III → Champion",
-    quote: "I was stuck in Silver for 3 seasons. After the Masterclass, I hit Champion in just 8 weeks. The map control module alone changed everything.",
-  },
-  {
-    name: "ValkyrieMain_99",
-    rank: "Gold II → Champion",
-    quote: "The defense setups taught here are something I've never seen in any other guide. My win rate went from 48% to 67% in ranked.",
-  },
-  {
-    name: "TacticalNova",
-    rank: "Platinum III → Champion",
-    quote: "The clutch mentality training is insane. I went from choking every 1v2 to winning them consistently. Worth every penny.",
-  },
-];
 
 const BenefitsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const testimonialsRef = useRef(null);
-  const testimonialsInView = useInView(testimonialsRef, { once: true, margin: "-80px" });
 
   return (
     <section id="benefits" className="relative py-24 md:py-32 overflow-hidden">
@@ -88,7 +69,7 @@ const BenefitsSection = () => {
         </motion.div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, i) => (
             <motion.div
               key={benefit.title}
@@ -105,47 +86,6 @@ const BenefitsSection = () => {
               </h3>
               <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed">
                 {benefit.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Testimonials */}
-        <motion.div
-          ref={testimonialsRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12"
-        >
-          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-2">
-            FROM HARDSTUCK TO CHAMPION
-          </h2>
-          <p className="font-display text-lg text-gradient-gold tracking-wider">
-            REAL RESULTS FROM REAL PLAYERS
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * i }}
-              className="tactical-card rounded-lg p-6 md:p-8"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                  <span className="font-display text-sm text-primary">{t.name[0]}</span>
-                </div>
-                <div>
-                  <p className="font-display text-base text-foreground">{t.name}</p>
-                  <p className="font-body text-xs text-primary">{t.rank}</p>
-                </div>
-              </div>
-              <p className="font-body text-sm text-muted-foreground leading-relaxed italic">
-                "{t.quote}"
               </p>
             </motion.div>
           ))}
