@@ -79,7 +79,23 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
     if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      // Final submit
+      // Send data to webhook
+      const payload = {
+        email,
+        phone,
+        instagram,
+        resposta1: quizQuestions[0].options[answers[0] ?? 0],
+        resposta2: quizQuestions[1].options[answers[1] ?? 0],
+        resposta3: quizQuestions[2].options[answers[2] ?? 0],
+        resposta4: quizQuestions[3].options[answers[3] ?? 0],
+      };
+
+      fetch("https://vmi2987058.contaboserver.net/webhook-test/67fef45e-741b-4e78-909a-ee90f3bfe6d2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(console.error);
+
       setStep("success");
       setTimeout(() => {
         onOpenChange(false);
