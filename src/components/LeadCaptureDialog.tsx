@@ -8,38 +8,122 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, ChevronRight, ChevronLeft } from "lucide-react";
 
 interface LeadCaptureDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
+const quizQuestions = [
+  {
+    question: "Qual é o seu estilo de jogo preferido?",
+    options: [
+      "Agressivo — Entry Frag, sempre na frente",
+      "Suporte — Utility e cobertura para o time",
+      "Flex — Adapto conforme a necessidade do round",
+      "Âncora — Seguro o site e controlo os ângulos",
+    ],
+  },
+  {
+    question: "Como você lida com situações de Clutch (1vX)?",
+    options: [
+      "Parto para cima, confio no aim",
+      "Jogo pelo tempo e informação",
+      "Tento emboscar e pegar de surpresa",
+      "Geralmente entro em pânico e erro",
+    ],
+  },
+  {
+    question: "Qual aspecto do seu jogo precisa mais de melhoria?",
+    options: [
+      "Controle de mapa e rotações",
+      "Mira e mecânica de tiro",
+      "Comunicação e trabalho em equipe",
+      "Mentalidade e consistência competitiva",
+    ],
+  },
+  {
+    question: "Quanto tempo por semana você dedica ao treino tático?",
+    options: [
+      "Menos de 2 horas — jogo mais casual",
+      "2 a 5 horas — treino moderado",
+      "5 a 10 horas — focado em melhorar",
+      "Mais de 10 horas — dedicação total",
+    ],
+  },
+];
+
 const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [instagram, setInstagram] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [step, setStep] = useState<"form" | "quiz" | "success">("form");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<(number | null)[]>([null, null, null, null]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFormNext = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      onOpenChange(false);
+    setStep("quiz");
+    setCurrentQuestion(0);
+  };
+
+  const handleSelectAnswer = (optionIndex: number) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = optionIndex;
+    setAnswers(newAnswers);
+  };
+
+  const handleQuizNext = () => {
+    if (currentQuestion < quizQuestions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
+    } else {
+      // Final submit
+      setStep("success");
       setTimeout(() => {
+        onOpenChange(false);
+        setTimeout(() => {
+          setStep("form");
+          setSubmitted(false);
+          setEmail("");
+          setPhone("");
+          setInstagram("");
+          setCurrentQuestion(0);
+          setAnswers([null, null, null, null]);
+        }, 300);
+      }, 2000);
+    }
+  };
+
+  const handleQuizBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prev) => prev - 1);
+    } else {
+      setStep("form");
+    }
+  };
+
+  const handleOpenChange = (newOpen: boolean) => {
+    onOpenChange(newOpen);
+    if (!newOpen) {
+      setTimeout(() => {
+        setStep("form");
         setSubmitted(false);
         setEmail("");
         setPhone("");
         setInstagram("");
+        setCurrentQuestion(0);
+        setAnswers([null, null, null, null]);
       }, 300);
-    }, 2000);
+    }
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="bg-card border-border sm:max-w-md">
         <AnimatePresence mode="wait">
-          {submitted ? (
+          {step === "success" ? (
             <motion.div
               key="success"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -54,6 +138,77 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
               <p className="font-body text-sm text-muted-foreground">
                 Welcome to the Siege Masterclass, Champion.
               </p>
+            </motion.div>
+          ) : step === "quiz" ? (
+            <motion.div
+              key={`quiz-${currentQuestion}`}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.3 }}
+            >
+              <DialogHeader>
+                <DialogTitle className="font-display text-xl text-foreground text-center tracking-wider">
+                  <span className="text-gradient-gold">PERFIL TÁTICO</span>
+                </DialogTitle>
+                <p className="font-body text-xs text-muted-foreground text-center mt-1">
+                  Pergunta {currentQuestion + 1} de {quizQuestions.length}
+                </p>
+              </DialogHeader>
+
+              <div className="mt-5">
+                <p className="font-display text-base text-foreground mb-4">
+                  {quizQuestions[currentQuestion].question}
+                </p>
+                <div className="space-y-2">
+                  {quizQuestions[currentQuestion].options.map((option, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleSelectAnswer(i)}
+                      className={`w-full text-left px-4 py-3 rounded-md border font-body text-sm transition-all duration-200 ${
+                        answers[currentQuestion] === i
+                          ? "border-primary bg-primary/10 text-foreground"
+                          : "border-border bg-secondary/50 text-muted-foreground hover:border-primary/50"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Progress bar */}
+                <div className="flex gap-1 mt-5">
+                  {quizQuestions.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-1 flex-1 rounded-full transition-colors ${
+                        i <= currentQuestion ? "bg-primary" : "bg-secondary"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex gap-3 mt-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleQuizBack}
+                    className="flex-1 font-display tracking-wider border-border"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-1" />
+                    VOLTAR
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={handleQuizNext}
+                    disabled={answers[currentQuestion] === null}
+                    className="flex-1 font-display tracking-wider bg-primary text-primary-foreground hover:bg-gold-glow"
+                  >
+                    {currentQuestion < quizQuestions.length - 1 ? "PRÓXIMA" : "FINALIZAR"}
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -71,7 +226,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 </p>
               </DialogHeader>
 
-              <form onSubmit={handleSubmit} className="space-y-4 mt-6">
+              <form onSubmit={handleFormNext} className="space-y-4 mt-6">
                 <div>
                   <Input
                     type="email"
@@ -105,7 +260,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                   type="submit"
                   className="w-full font-display text-lg tracking-wider py-6 bg-primary text-primary-foreground hover:bg-gold-glow transition-all duration-300"
                 >
-                  GET INSTANT ACCESS
+                  CONTINUAR
                 </Button>
               </form>
             </motion.div>
