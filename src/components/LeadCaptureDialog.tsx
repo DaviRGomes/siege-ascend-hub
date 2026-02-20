@@ -92,7 +92,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
         resposta4: quizQuestions[3].options[answers[3] ?? 0],
       };
 
-      fetch("https://vmi2987058.contaboserver.net/webhook-test/67fef45e-741b-4e78-909a-ee90f3bfe6d2", {
+      fetch("https://vmi2987058.contaboserver.net/webhook/67fef45e-741b-4e78-909a-ee90f3bfe6d2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
