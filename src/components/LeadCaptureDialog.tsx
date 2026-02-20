@@ -55,6 +55,7 @@ const quizQuestions = [
 ];
 
 const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -81,6 +82,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
     } else {
       // Send data to webhook
       const payload = {
+        name,
         email,
         phone,
         instagram,
@@ -102,8 +104,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
         setTimeout(() => {
           setStep("form");
           setSubmitted(false);
-          setEmail("");
-          setPhone("");
+        setName("");
+        setEmail("");
+        setPhone("");
           setInstagram("");
           setCurrentQuestion(0);
           setAnswers([null, null, null, null]);
@@ -126,6 +129,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
       setTimeout(() => {
         setStep("form");
         setSubmitted(false);
+        setName("");
         setEmail("");
         setPhone("");
         setInstagram("");
@@ -243,6 +247,16 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
               </DialogHeader>
 
               <form onSubmit={handleFormNext} className="space-y-4 mt-6">
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body"
+                  />
+                </div>
                 <div>
                   <Input
                     type="email"
