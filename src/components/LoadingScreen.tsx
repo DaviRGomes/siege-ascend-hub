@@ -64,7 +64,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           transition={{ delay: 0.4 }}
           className="mt-4 text-sm text-muted-foreground font-body tracking-wider"
         >
-          LOADING TACTICAL DATA...
+          CARREGANDO DADOS TÁTICOS...
         </motion.p>
       </motion.div>
     </AnimatePresence>
