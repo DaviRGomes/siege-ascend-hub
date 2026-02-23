@@ -25,10 +25,10 @@ const ProblemSection = () => {
         >
           <div className="glow-line w-32 mx-auto mb-8" />
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-foreground mb-2">
-            THE PROBLEM
+            O PROBLEMA
           </h2>
           <p className="font-display text-xl md:text-2xl text-gradient-gold tracking-wider">
-            WHY YOU'RE STUCK
+            POR QUE VOCÊ ESTÁ PRESO
           </p>
         </motion.div>
 
@@ -39,17 +39,17 @@ const ProblemSection = () => {
           className="tactical-card rounded-lg p-8 md:p-12 mb-8"
         >
           <p className="font-body text-lg md:text-xl text-foreground/90 leading-relaxed mb-6">
-            Are you tired of losing matches due to a <span className="text-primary font-semibold">lack of tactical coordination</span>,
-            poor decision-making, and predictable plays?
+            Você está cansado de perder partidas por <span className="text-primary font-semibold">falta de coordenação tática</span>,
+            decisões ruins e jogadas previsíveis?
           </p>
           <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-            We understand. The path to Champion is riddled with challenges. But what if you could
-            bypass the grind and directly adopt the strategies of the pros?
+            Nós entendemos. O caminho até o Champion é cheio de desafios. Mas e se você pudesse
+            pular a curva de aprendizado e adotar diretamente as estratégias dos pros?
           </p>
           <div className="glow-line w-full my-6" />
           <p className="font-body text-lg md:text-xl text-foreground/90 leading-relaxed">
-            The <span className="text-primary font-bold">Siege Masterclass: Elo Champion</span> offers
-            a proven blueprint to revolutionize your gameplay.
+            A <span className="text-primary font-bold">Siege Masterclass: Elo Champion</span> oferece
+            um método comprovado para revolucionar seu gameplay.
           </p>
         </motion.div>
 
@@ -61,9 +61,9 @@ const ProblemSection = () => {
           className="grid grid-cols-3 gap-4 md:gap-8"
         >
           {[
-            { value: "87%", label: "of players never escape Platinum" },
-            { value: "3x", label: "faster rank-up with pro strats" },
-            { value: "500+", label: "Champions trained" },
+            { value: "87%", label: "dos jogadores nunca saem do Platina" },
+            { value: "3x", label: "mais rápido para subir de elo com strats pro" },
+            { value: "500+", label: "Champions treinados" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="font-display text-3xl md:text-5xl text-gradient-gold">{stat.value}</p>

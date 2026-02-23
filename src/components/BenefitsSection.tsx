@@ -6,33 +6,33 @@ import benefitsBg from "@/assets/r6s-operators-action.jpg";
 const benefits = [
   {
     icon: Map,
-    title: "Master Map Control & Rotations",
-    description: "Learn advanced strategies for map dominance and flawless rotations, just like pro teams.",
+    title: "Domine Controle de Mapa e Rotações",
+    description: "Aprenda estratégias avançadas de domínio de mapa e rotações perfeitas, assim como times profissionais.",
   },
   {
     icon: Shield,
-    title: "Advanced Defense Setups",
-    description: "Discover pixel-perfect angles, impenetrable utility placements, and crucial camera spots on every map.",
+    title: "Setups de Defesa Avançados",
+    description: "Descubra ângulos pixel-perfect, posicionamentos de utilidade impenetráveis e spots de câmera cruciais em cada mapa.",
   },
   {
     icon: Eye,
-    title: "Unrivaled Macro Game Vision",
-    description: "Develop an elite understanding of the game's flow, anticipating enemy moves and dictating the pace.",
+    title: "Visão de Jogo Macro Incomparável",
+    description: "Desenvolva um entendimento de elite sobre o fluxo do jogo, antecipando jogadas inimigas e ditando o ritmo.",
   },
   {
     icon: Crosshair,
-    title: "Flawless Attack Executions",
-    description: "Execute precise plant strategies and entry frags with synchronized team pushes.",
+    title: "Execuções de Ataque Perfeitas",
+    description: "Execute estratégias precisas de plant e entry frags com pushes sincronizados do time.",
   },
   {
     icon: Brain,
-    title: "Dominate Clutch Situations",
-    description: "Cultivate the mental fortitude and tactical awareness to consistently win critical 1vX scenarios.",
+    title: "Domine Situações de Clutch",
+    description: "Cultive a fortaleza mental e consciência tática para vencer consistentemente cenários críticos de 1vX.",
   },
   {
     icon: Radio,
-    title: "Effective Drone Economy",
-    description: "Master intelligent drone usage for intel gathering, entry preparation, and post-plant scenarios.",
+    title: "Economia de Drone Eficiente",
+    description: "Domine o uso inteligente de drones para coleta de informação, preparação de entrada e cenários pós-plant.",
   },
 ];
 
@@ -61,10 +61,10 @@ const BenefitsSection = () => {
         >
           <div className="glow-line w-32 mx-auto mb-8" />
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-foreground mb-2">
-            WHAT YOU'LL MASTER
+            O QUE VOCÊ VAI DOMINAR
           </h2>
           <p className="font-display text-xl md:text-2xl text-gradient-gold tracking-wider">
-            6 PILLARS OF CHAMPION GAMEPLAY
+            6 PILARES DO GAMEPLAY CHAMPION
           </p>
         </motion.div>
 

@@ -80,7 +80,6 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
     if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      // Send data to webhook
       const payload = {
         name,
         email,
@@ -104,9 +103,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
         setTimeout(() => {
           setStep("form");
           setSubmitted(false);
-        setName("");
-        setEmail("");
-        setPhone("");
+          setName("");
+          setEmail("");
+          setPhone("");
           setInstagram("");
           setCurrentQuestion(0);
           setAnswers([null, null, null, null]);
@@ -154,9 +153,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
               <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4 shadow-gold">
                 <Check className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h3 className="font-display text-2xl text-foreground mb-2">ACCESS GRANTED</h3>
+              <h3 className="font-display text-2xl text-foreground mb-2">ACESSO CONCEDIDO</h3>
               <p className="font-body text-sm text-muted-foreground">
-                Welcome to the Siege Masterclass, Champion.
+                Bem-vindo à Siege Masterclass, Champion.
               </p>
             </motion.div>
           ) : step === "quiz" ? (
@@ -239,10 +238,10 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
             >
               <DialogHeader>
                 <DialogTitle className="font-display text-2xl text-foreground text-center tracking-wider">
-                  <span className="text-gradient-gold">GET INSTANT ACCESS</span>
+                  <span className="text-gradient-gold">ACESSO IMEDIATO</span>
                 </DialogTitle>
                 <p className="font-body text-sm text-muted-foreground text-center mt-2">
-                  Enter your details below to enroll in the Siege Masterclass.
+                  Preencha seus dados abaixo para se inscrever na Siege Masterclass.
                 </p>
               </DialogHeader>
 
@@ -250,7 +249,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 <div>
                   <Input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder="Seu Nome"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -260,7 +259,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 <div>
                   <Input
                     type="email"
-                    placeholder="Email Address"
+                    placeholder="Endereço de E-mail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -270,7 +269,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 <div>
                   <Input
                     type="tel"
-                    placeholder="Phone Number"
+                    placeholder="Número de Telefone"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
@@ -280,7 +279,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 <div>
                   <Input
                     type="text"
-                    placeholder="Instagram Handle"
+                    placeholder="Instagram"
                     value={instagram}
                     onChange={(e) => setInstagram(e.target.value)}
                     className="bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body"
