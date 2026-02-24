@@ -9,6 +9,28 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronRight, ChevronLeft } from "lucide-react";
+import { maskPhone } from "@/lib/checkout-utils";
+
+const VALID_EMAIL_DOMAINS = [
+  "gmail.com", "hotmail.com", "outlook.com", "yahoo.com", "yahoo.com.br",
+  "live.com", "icloud.com", "protonmail.com", "zoho.com",
+  "uol.com.br", "bol.com.br", "terra.com.br", "ig.com.br",
+  "globo.com", "msn.com", "aol.com", "mail.com",
+];
+
+function validateEmail(email: string): boolean {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regex.test(email)) return false;
+  const domain = email.split("@")[1]?.toLowerCase();
+  if (!domain) return false;
+  // Must end with a common TLD (2-3 chars)
+  const tld = domain.split(".").pop() || "";
+  if (tld.length > 4 || tld.length < 2) return false;
+  // Block obvious typos like .com.ui, .con, .cmo
+  const blockedTlds = ["ui", "con", "cmo", "cm", "co", "gmai", "gmial"];
+  if (blockedTlds.includes(tld)) return false;
+  return true;
+}
 
 interface LeadCaptureDialogProps {
   open: boolean;
@@ -64,8 +86,16 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>([null, null, null, null]);
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const handleFormNext = (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: Record<string, string> = {};
+    if (!validateEmail(email)) newErrors.email = "E-mail inválido. Verifique o endereço.";
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length < 10 || phoneDigits.length > 11) newErrors.phone = "Número inválido. Use (DD) 9XXXX-XXXX";
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
     setStep("quiz");
     setCurrentQuestion(0);
   };
@@ -261,20 +291,22 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                     type="email"
                     placeholder="Endereço de E-mail"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => { setEmail(e.target.value); setErrors((prev) => ({ ...prev, email: "" })); }}
                     required
-                    className="bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body"
+                    className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.email ? "border-destructive" : ""}`}
                   />
+                  {errors.email && <p className="text-destructive text-xs mt-1 font-body">{errors.email}</p>}
                 </div>
                 <div>
                   <Input
                     type="tel"
-                    placeholder="Número de Telefone"
+                    placeholder="(DD) 9XXXX-XXXX"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => { setPhone(maskPhone(e.target.value)); setErrors((prev) => ({ ...prev, phone: "" })); }}
                     required
-                    className="bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body"
+                    className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.phone ? "border-destructive" : ""}`}
                   />
+                  {errors.phone && <p className="text-destructive text-xs mt-1 font-body">{errors.phone}</p>}
                 </div>
                 <div>
                   <Input
