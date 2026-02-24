@@ -104,7 +104,7 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
           </motion.div>
         </div>
 
-        {/* Bonus */}
+        {/* E-book Sale */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -112,16 +112,16 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
           className="tactical-card rounded-lg p-8 md:p-10 text-center border-gold-glow"
         >
           <p className="font-display text-sm tracking-[0.3em] text-primary mb-3">
-            BÔNUS EXCLUSIVO
+            VENDA SEPARADA
           </p>
-          <h3 className="font-display text-2xl md:text-3xl text-foreground mb-4">
+          <h3 className="font-display text-2xl md:text-3xl text-foreground mb-2">
             EBOOK: MENTALIDADE CHAMPION
           </h3>
           <p className="font-body text-base text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
             Desbloqueie os segredos da Mentalidade Clutch, Micro-Sinergia, Uso Eficiente de Drones e
-            Execuções de Plant Perfeitas. Incluído gratuitamente na sua inscrição.
+            Execuções de Plant Perfeitas.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
             {["Mentalidade Clutch", "Micro-Sinergia", "Economia de Drone", "Execuções de Plant"].map((tag) => (
               <span
                 key={tag}
@@ -131,6 +131,16 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
               </span>
             ))}
           </div>
+          <div className="mb-6">
+            <span className="font-body text-sm text-muted-foreground line-through mr-2">R$ 97,00</span>
+            <span className="font-display text-4xl text-foreground">R$ 47,00</span>
+          </div>
+          <Button
+            onClick={onCtaClick}
+            className="font-display text-base tracking-wider px-12 py-6 bg-primary text-primary-foreground hover:bg-gold-glow transition-all duration-300"
+          >
+            QUERO O EBOOK
+          </Button>
         </motion.div>
       </div>
     </section>
