@@ -7,35 +7,40 @@ const benefits = [
   {
     icon: Map,
     title: "Domine Controle de Mapa e Rotações",
-    description: "Aprenda estratégias avançadas de domínio de mapa e rotações perfeitas, assim como times profissionais.",
+    description:
+      "Aprenda estratégias avançadas de domínio de mapa e rotações perfeitas, assim como times profissionais",
   },
   {
     icon: Shield,
     title: "Setups de Defesa Avançados",
-    description: "Descubra ângulos pixel-perfect, posicionamentos de utilidade impenetráveis e spots de câmera cruciais em cada mapa.",
+    description:
+      "Descubra ângulos pixel-perfect, posicionamentos de utilidade impenetráveis e spots de câmera cruciais em cada mapa",
   },
   {
     icon: Eye,
     title: "Visão de Jogo Macro Incomparável",
-    description: "Desenvolva um entendimento de elite sobre o fluxo do jogo, antecipando jogadas inimigas e ditando o ritmo.",
+    description:
+      "Desenvolva um entendimento de elite sobre o fluxo do jogo, antecipando jogadas inimigas e ditando o ritmo",
   },
   {
     icon: Crosshair,
     title: "Execuções de Ataque Perfeitas",
-    description: "Execute estratégias precisas de plant e entry frags com pushes sincronizados do time.",
+    description:
+      "Execute estratégias precisas de plant e entry frags com pushes sincronizados do time",
   },
   {
     icon: Brain,
     title: "Domine Situações de Clutch",
-    description: "Cultive a fortaleza mental e consciência tática para vencer consistentemente cenários críticos de 1vX.",
+    description:
+      "Cultive a fortaleza mental e consciência tática para vencer consistentemente cenários críticos de 1vX",
   },
   {
     icon: Radio,
     title: "Economia de Drone Eficiente",
-    description: "Domine o uso inteligente de drones para coleta de informação, preparação de entrada e cenários pós-plant.",
+    description:
+      "Domine o uso inteligente de drones para coleta de informação, preparação de entrada e cenários pós-plant",
   },
 ];
-
 
 const BenefitsSection = () => {
   const ref = useRef(null);

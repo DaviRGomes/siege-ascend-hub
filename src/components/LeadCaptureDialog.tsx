@@ -12,10 +12,23 @@ import { Check, ChevronRight, ChevronLeft } from "lucide-react";
 import { maskPhone } from "@/lib/checkout-utils";
 
 const VALID_EMAIL_DOMAINS = [
-  "gmail.com", "hotmail.com", "outlook.com", "yahoo.com", "yahoo.com.br",
-  "live.com", "icloud.com", "protonmail.com", "zoho.com",
-  "uol.com.br", "bol.com.br", "terra.com.br", "ig.com.br",
-  "globo.com", "msn.com", "aol.com", "mail.com",
+  "gmail.com",
+  "hotmail.com",
+  "outlook.com",
+  "yahoo.com",
+  "yahoo.com.br",
+  "live.com",
+  "icloud.com",
+  "protonmail.com",
+  "zoho.com",
+  "uol.com.br",
+  "bol.com.br",
+  "terra.com.br",
+  "ig.com.br",
+  "globo.com",
+  "msn.com",
+  "aol.com",
+  "mail.com",
 ];
 
 function validateEmail(email: string): boolean {
@@ -80,20 +93,27 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [instagram, setInstagram] = useState("");
+  //const [instagram, setInstagram] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [step, setStep] = useState<"form" | "quiz" | "success">("form");
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>([null, null, null, null]);
+  const [answers, setAnswers] = useState<(number | null)[]>([
+    null,
+    null,
+    null,
+    null,
+  ]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleFormNext = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
-    if (!validateEmail(email)) newErrors.email = "E-mail inválido. Verifique o endereço.";
+    if (!validateEmail(email))
+      newErrors.email = "E-mail inválido. Verifique o endereço";
     const phoneDigits = phone.replace(/\D/g, "");
-    if (phoneDigits.length < 10 || phoneDigits.length > 11) newErrors.phone = "Número inválido. Use (DD) 9XXXX-XXXX";
+    if (phoneDigits.length < 10 || phoneDigits.length > 11)
+      newErrors.phone = "Número inválido. Use (DD) 9XXXX-XXXX";
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
     setStep("quiz");
@@ -114,18 +134,21 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
         name,
         email,
         phone,
-        instagram,
+        //instagram,
         resposta1: quizQuestions[0].options[answers[0] ?? 0],
         resposta2: quizQuestions[1].options[answers[1] ?? 0],
         resposta3: quizQuestions[2].options[answers[2] ?? 0],
         resposta4: quizQuestions[3].options[answers[3] ?? 0],
       };
 
-      fetch("https://vmi2987058.contaboserver.net/webhook/67fef45e-741b-4e78-909a-ee90f3bfe6d2", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch(console.error);
+      fetch(
+        "https://vmi2987058.contaboserver.net/webhook-test/67fef45e-741b-4e78-909a-ee90f3bfe6d2",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      ).catch(console.error);
 
       setStep("success");
       setTimeout(() => {
@@ -136,7 +159,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
           setName("");
           setEmail("");
           setPhone("");
-          setInstagram("");
+          //setInstagram("");
           setCurrentQuestion(0);
           setAnswers([null, null, null, null]);
         }, 300);
@@ -161,7 +184,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
         setName("");
         setEmail("");
         setPhone("");
-        setInstagram("");
+        //setInstagram("");
         setCurrentQuestion(0);
         setAnswers([null, null, null, null]);
       }, 300);
@@ -183,7 +206,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
               <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4 shadow-gold">
                 <Check className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h3 className="font-display text-2xl text-foreground mb-2">ACESSO CONCEDIDO</h3>
+              <h3 className="font-display text-2xl text-foreground mb-2">
+                ACESSO CONCEDIDO
+              </h3>
               <p className="font-body text-sm text-muted-foreground">
                 Bem-vindo à Siege Masterclass, Champion.
               </p>
@@ -253,7 +278,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                     disabled={answers[currentQuestion] === null}
                     className="flex-1 font-display tracking-wider bg-primary text-primary-foreground hover:bg-gold-glow"
                   >
-                    {currentQuestion < quizQuestions.length - 1 ? "PRÓXIMA" : "FINALIZAR"}
+                    {currentQuestion < quizQuestions.length - 1
+                      ? "PRÓXIMA"
+                      : "FINALIZAR"}
                     <ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
@@ -271,7 +298,8 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                   <span className="text-gradient-gold">ACESSO IMEDIATO</span>
                 </DialogTitle>
                 <p className="font-body text-sm text-muted-foreground text-center mt-2">
-                  Preencha seus dados abaixo para se inscrever na Siege Masterclass.
+                  Preencha seus dados abaixo para se inscrever na Siege
+                  Masterclass.
                 </p>
               </DialogHeader>
 
@@ -291,31 +319,45 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                     type="email"
                     placeholder="Endereço de E-mail"
                     value={email}
-                    onChange={(e) => { setEmail(e.target.value); setErrors((prev) => ({ ...prev, email: "" })); }}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setErrors((prev) => ({ ...prev, email: "" }));
+                    }}
                     required
                     className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.email ? "border-destructive" : ""}`}
                   />
-                  {errors.email && <p className="text-destructive text-xs mt-1 font-body">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-destructive text-xs mt-1 font-body">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <Input
                     type="tel"
                     placeholder="(DD) 9XXXX-XXXX"
                     value={phone}
-                    onChange={(e) => { setPhone(maskPhone(e.target.value)); setErrors((prev) => ({ ...prev, phone: "" })); }}
+                    onChange={(e) => {
+                      setPhone(maskPhone(e.target.value));
+                      setErrors((prev) => ({ ...prev, phone: "" }));
+                    }}
                     required
                     className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.phone ? "border-destructive" : ""}`}
                   />
-                  {errors.phone && <p className="text-destructive text-xs mt-1 font-body">{errors.phone}</p>}
+                  {errors.phone && (
+                    <p className="text-destructive text-xs mt-1 font-body">
+                      {errors.phone}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <Input
+                  {/* <Input
                     type="text"
-                    placeholder="Instagram"
-                    value={instagram}
-                    onChange={(e) => setInstagram(e.target.value)}
+                    //placeholder="Instagram"
+                    //value={instagram}
+                    //onChange={(e) => setInstagram(e.target.value)}
                     className="bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body"
-                  />
+                  /> */}
                 </div>
                 <Button
                   type="submit"

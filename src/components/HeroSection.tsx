@@ -41,11 +41,11 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
         >
           <span className="text-foreground">PARE DE PERDER POR</span>
           <br />
-          <span className="text-foreground">FALTA DE TÁTICA.</span>
+          <span className="text-foreground">FALTA DE TÁTICA</span>
           <br />
           <span className="text-gradient-gold">DOMINE O SERVIDOR</span>
           <br />
-          <span className="text-gradient-gold">COM MENTALIDADE DE PRO.</span>
+          <span className="text-gradient-gold">COM MENTALIDADE DE PRO</span>
         </motion.h1>
 
         <motion.p
@@ -54,8 +54,9 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="font-body text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Cansado de ficar preso no mesmo elo? A Siege Masterclass foi criada para jogadores
-          de Prata a Platina prontos para alcançar o rank Champion.
+          Cansado de ficar preso no mesmo elo? A Siege Masterclass foi criada
+          para jogadores de Prata a Platina prontos para alcançar o rank
+          Champion
         </motion.p>
 
         <motion.div
@@ -77,7 +78,7 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
             onClick={() => scrollToSection("benefits")}
             className="font-display text-lg tracking-wider px-8 py-6 border-gold-glow text-foreground hover:bg-secondary transition-all duration-300"
           >
-            EXPLORAR A MASTERCLASS
+            EXPLORAR BENEFÍCIOS
           </Button>
         </motion.div>
       </div>

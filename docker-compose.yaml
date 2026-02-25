@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lovable-app
+    ports:
+      - "8085:80"
+    restart: always
+    networks:
+      - rede_global_nginx
+
+networks:
+  rede_global_nginx:
+    external: true
