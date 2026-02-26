@@ -81,6 +81,26 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
             EXPLORAR BENEFÍCIOS
           </Button>
         </motion.div>
+
+        {/* Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-12 w-full max-w-3xl mx-auto"
+        >
+          <p className="font-display text-sm tracking-[0.3em] text-gold-dim text-center mb-4 uppercase">
+            Assista e descubra o método
+          </p>
+          <div className="aspect-video rounded-lg overflow-hidden border border-border/20 shadow-xl">
+            <iframe
+              src="https://drive.google.com/file/d/1Or00Ske5vsme2VtZIPqheyCltZRAIOY9/preview"
+              className="w-full h-full"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom gradient fade */}
