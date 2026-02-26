@@ -10,18 +10,23 @@ import FooterSection from "@/components/FooterSection";
 import LeadCaptureDialog from "@/components/LeadCaptureDialog";
 
 const Index = () => {
-  const [showVideo, setShowVideo] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <>
       <AnimatePresence>
-        {showVideo && <VideoIntro onComplete={() => setShowVideo(false)} />}
+        {loading && (
+          <LoadingScreen onComplete={() => {
+            setLoading(false);
+            setShowVideo(true);
+          }} />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {!showVideo && loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+        {showVideo && <VideoIntro onComplete={() => setShowVideo(false)} />}
       </AnimatePresence>
 
       {!loading && (
