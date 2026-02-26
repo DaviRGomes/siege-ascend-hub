@@ -69,7 +69,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
     const checkoutUrl = `https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
 
     setTimeout(() => {
-      window.location.href = checkoutUrl;
+      window.open(checkoutUrl, "_blank");
     }, 1500);
   };
 
