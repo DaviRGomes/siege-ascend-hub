@@ -120,7 +120,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                   <span className="text-gradient-gold">ACESSO IMEDIATO</span>
                 </DialogTitle>
                 <p className="font-body text-sm text-muted-foreground text-center mt-2">
-                  Preencha seus dados abaixo para garantir seu E-book.
+                  Preencha seus dados abaixo para garantir seu acesso ao curso.
                 </p>
               </DialogHeader>
 

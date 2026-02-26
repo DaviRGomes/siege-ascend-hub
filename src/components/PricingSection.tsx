@@ -1,10 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Brain, Crosshair, Gamepad2, Target } from "lucide-react";
+import { GraduationCap, Brain, Crosshair, Gamepad2, Target } from "lucide-react";
 import pricingBg from "@/assets/r6s-livestream.jpg";
 
-const ebookFeatures = [
+const courseFeatures = [
   { icon: Brain, text: "Mentalidade Clutch — domine situações 1vX com controle emocional" },
   { icon: Crosshair, text: "Micro-Sinergia — coordenação tática avançada com seu time" },
   { icon: Gamepad2, text: "Economia de Drone — uso eficiente de intel em cada round" },
@@ -38,10 +38,10 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
         >
           <div className="glow-line w-32 mx-auto mb-8" />
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-foreground mb-2">
-            GARANTA SEU EBOOK
+            GARANTA SEU CURSO
           </h2>
           <p className="font-display text-xl md:text-2xl text-gradient-gold tracking-wider">
-            MENTALIDADE CHAMPION
+            SIEGE MASTERCLASS
           </p>
         </motion.div>
 
@@ -59,20 +59,20 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <BookOpen className="w-6 h-6 text-primary" />
+                  <GraduationCap className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-display text-sm tracking-[0.3em] text-primary">EBOOK</p>
-                  <h3 className="font-display text-xl text-foreground">MENTALIDADE CHAMPION</h3>
+                  <p className="font-display text-sm tracking-[0.3em] text-primary">CURSO</p>
+                  <h3 className="font-display text-xl text-foreground">SIEGE MASTERCLASS</h3>
                 </div>
               </div>
 
               <p className="font-body text-sm text-muted-foreground mb-6 leading-relaxed">
-                Desbloqueie os segredos táticos e psicológicos que separam os jogadores medianos dos Champions.
+                Curso completo com os segredos táticos e psicológicos que separam os jogadores medianos dos Champions.
               </p>
 
               <ul className="space-y-3 mb-6">
-                {ebookFeatures.map((f) => (
+                {courseFeatures.map((f) => (
                   <li key={f.text} className="flex items-start gap-3">
                     <f.icon className="w-4 h-4 text-primary mt-1 shrink-0" />
                     <span className="font-body text-sm text-foreground/80">{f.text}</span>
@@ -102,7 +102,7 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
                 onClick={onCtaClick}
                 className="w-full font-display text-base tracking-wider py-6 bg-primary text-primary-foreground hover:bg-gold-glow transition-all duration-300"
               >
-                QUERO O EBOOK
+                QUERO O CURSO
               </Button>
               <p className="font-body text-xs text-muted-foreground mt-3">
                 🔒 Pagamento seguro • Entrega digital instantânea

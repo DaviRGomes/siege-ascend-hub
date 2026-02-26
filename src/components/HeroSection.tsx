@@ -54,7 +54,7 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="font-body text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Cansado de ficar preso no mesmo elo? A Siege Masterclass foi criada
+          Cansado de ficar preso no mesmo elo? O curso Siege Masterclass foi criado
           para jogadores de Prata a Platina prontos para alcançar o rank
           Champion
         </motion.p>
