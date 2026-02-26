@@ -58,7 +58,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
-        }
+        },
       );
     } catch (err) {
       console.error(err);
@@ -66,7 +66,7 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
 
     setStep("success");
 
-    const checkoutUrl = `https://pay.kiwify.com.br/74aoC05?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
+    const checkoutUrl = `https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
 
     setTimeout(() => {
       window.location.href = checkoutUrl;
@@ -146,7 +146,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                     className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.email ? "border-destructive" : ""}`}
                   />
                   {errors.email && (
-                    <p className="text-destructive text-xs mt-1 font-body">{errors.email}</p>
+                    <p className="text-destructive text-xs mt-1 font-body">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -162,7 +164,9 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                     className={`bg-secondary border-border text-foreground placeholder:text-muted-foreground font-body ${errors.phone ? "border-destructive" : ""}`}
                   />
                   {errors.phone && (
-                    <p className="text-destructive text-xs mt-1 font-body">{errors.phone}</p>
+                    <p className="text-destructive text-xs mt-1 font-body">
+                      {errors.phone}
+                    </p>
                   )}
                 </div>
                 <Button
