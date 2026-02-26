@@ -105,18 +105,20 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
                 href="https://chat.whatsapp.com/CcNVzvmfKBL9lcY3Imi4Od"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => {
-                  const checkoutUrl = `https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
-                  setTimeout(() => {
-                    window.open(checkoutUrl, "_blank");
-                  }, 1500);
-                }}
                 className="w-full inline-flex items-center justify-center gap-2 font-display text-base tracking-wider py-4 px-6 rounded-md bg-[hsl(142,70%,45%)] text-white hover:bg-[hsl(142,70%,40%)] transition-all duration-300"
               >
                 📲 ENTRAR NO GRUPO VIP
               </a>
+              <a
+                href={`https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 font-display text-base tracking-wider py-4 px-6 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 mt-3"
+              >
+                🔒 IR PARA O CHECKOUT
+              </a>
               <p className="font-body text-xs text-muted-foreground mt-4 text-center">
-                Após entrar no grupo, você será redirecionado ao checkout seguro.
+                Entre no grupo VIP e depois clique para ir ao checkout seguro.
               </p>
             </motion.div>
           ) : (
