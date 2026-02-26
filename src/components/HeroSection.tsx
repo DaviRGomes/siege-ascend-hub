@@ -67,7 +67,7 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
         >
           <Button
             size="lg"
-            onClick={onCtaClick}
+            onClick={() => scrollToSection("pricing")}
             className="font-display text-lg tracking-wider px-8 py-6 bg-primary text-primary-foreground hover:bg-gold-glow transition-all duration-300 animate-pulse-gold"
           >
             DESBLOQUEIE SEU POTENCIAL CHAMPION
