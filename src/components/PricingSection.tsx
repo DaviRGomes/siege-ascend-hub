@@ -107,6 +107,15 @@ const PricingSection = ({ onCtaClick }: PricingSectionProps) => {
               <p className="font-body text-xs text-muted-foreground mt-3">
                 🔒 Pagamento seguro • Entrega digital instantânea
               </p>
+
+              <a
+                href="https://chat.whatsapp.com/CcNVzvmfKBL9lcY3Imi4Od"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 font-display text-sm tracking-wider text-primary hover:text-primary/80 transition-colors"
+              >
+                🎯 ACESSO VIP — Grupo WhatsApp
+              </a>
             </div>
           </div>
         </motion.div>
