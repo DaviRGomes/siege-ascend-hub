@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import VideoIntro from "@/components/VideoIntro";
 import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -9,13 +10,18 @@ import FooterSection from "@/components/FooterSection";
 import LeadCaptureDialog from "@/components/LeadCaptureDialog";
 
 const Index = () => {
+  const [showVideo, setShowVideo] = useState(true);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <>
       <AnimatePresence>
-        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+        {showVideo && <VideoIntro onComplete={() => setShowVideo(false)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {!showVideo && loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
       {!loading && (
