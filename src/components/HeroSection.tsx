@@ -92,13 +92,15 @@ const HeroSection = ({ onCtaClick }: HeroSectionProps) => {
           <p className="font-display text-sm tracking-[0.3em] text-gold-dim text-center mb-4 uppercase">
             Assista e descubra o método
           </p>
-          <div className="aspect-video rounded-lg overflow-hidden border border-border/20 shadow-xl">
+          <div className="relative aspect-video rounded-lg overflow-hidden border border-border/20 shadow-xl" style={{ maxHeight: '1080px' }}>
             <iframe
               src="https://drive.google.com/file/d/1Or00Ske5vsme2VtZIPqheyCltZRAIOY9/preview"
               className="w-full h-full"
               allow="autoplay; encrypted-media"
-              allowFullScreen
+              sandbox="allow-scripts allow-same-origin"
             />
+            {/* Block top-right redirect button */}
+            <div className="absolute top-0 right-0 w-16 h-16 z-10" />
           </div>
         </motion.div>
       </div>
