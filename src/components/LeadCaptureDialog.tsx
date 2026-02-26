@@ -65,12 +65,6 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
     }
 
     setStep("success");
-
-    const checkoutUrl = `https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
-
-    setTimeout(() => {
-      window.open(checkoutUrl, "_blank");
-    }, 1500);
   };
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -96,16 +90,33 @@ const LeadCaptureDialog = ({ open, onOpenChange }: LeadCaptureDialogProps) => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center py-12"
+              className="flex flex-col items-center justify-center py-8"
             >
               <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-4 shadow-gold">
                 <Check className="w-8 h-8 text-primary-foreground" />
               </div>
               <h3 className="font-display text-2xl text-foreground mb-2">
-                REDIRECIONANDO...
+                QUASE LÁ!
               </h3>
-              <p className="font-body text-sm text-muted-foreground">
-                Levando você ao checkout seguro.
+              <p className="font-body text-sm text-muted-foreground text-center mb-6">
+                Entre no nosso grupo VIP do WhatsApp para receber conteúdos exclusivos e suporte direto.
+              </p>
+              <a
+                href="https://chat.whatsapp.com/CcNVzvmfKBL9lcY3Imi4Od"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  const checkoutUrl = `https://pay.kiwify.com.br/2CBorQ6?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}`;
+                  setTimeout(() => {
+                    window.open(checkoutUrl, "_blank");
+                  }, 1500);
+                }}
+                className="w-full inline-flex items-center justify-center gap-2 font-display text-base tracking-wider py-4 px-6 rounded-md bg-[hsl(142,70%,45%)] text-white hover:bg-[hsl(142,70%,40%)] transition-all duration-300"
+              >
+                📲 ENTRAR NO GRUPO VIP
+              </a>
+              <p className="font-body text-xs text-muted-foreground mt-4 text-center">
+                Após entrar no grupo, você será redirecionado ao checkout seguro.
               </p>
             </motion.div>
           ) : (
